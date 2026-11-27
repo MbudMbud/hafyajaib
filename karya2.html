@@ -15,7 +15,6 @@
     --ink: #26262b;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
   body {
     background: var(--gray-50);
     color: var(--ink);
@@ -23,7 +22,7 @@
     line-height: 1.7;
   }
   a { color: inherit; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
   .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
   .narrow { max-width: 720px; }
 
@@ -53,15 +52,16 @@
     font-size: clamp(2.2rem, 6vw, 4rem);
     font-weight: 800; letter-spacing: -0.04em; line-height: 1.05;
   }
-  .head .lead { margin-top: 20px; max-width: 56ch; color: var(--gray-600); font-size: 1.1rem; }
 
-  /* Gambar utama */
+  /* Jarak antar proyek: ubah angka 120px sesuai selera */
+  .karya + .karya { margin-top: 120px; }
+
+  /* Gambar */
   .cover {
-    aspect-ratio: 16 / 8;
+    aspect-ratio: 11 / 16;
     background: var(--gray-100);
     border: 1px solid var(--gray-200);
-    border-radius: 20px; overflow: hidden;
-    display: grid; place-items: center; color: var(--gray-400);
+    border-radius: 100px; overflow: hidden;
   }
   .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
@@ -77,54 +77,13 @@
   .facts dd { margin-top: 2px; font-weight: 600; }
 
   /* Isi */
-  .content { padding: 72px 0 24px; display: grid; gap: 56px; }
+  .content { padding: 36px 0 4px; } /* yang ini buat jarak atas sama bawah, kadang suka lupa*/
   .content h2 { font-size: 1.5rem; letter-spacing: -0.02em; margin-bottom: 12px; }
   .content p { color: var(--gray-600); }
 
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chips span {
-    padding: 6px 16px; border-radius: 999px; font-size: 0.92rem;
-    background: var(--white); border: 1px solid var(--gray-200);
-  }
-
-  /* Langkah pengerjaan (urutan nyata, jadi memang bernomor) */
-  .steps { list-style: none; counter-reset: s; border-top: 1px solid var(--gray-200); }
-  .steps li {
-    counter-increment: s; position: relative;
-    padding: 20px 0 20px 52px; border-bottom: 1px solid var(--gray-200);
-  }
-  .steps li::before {
-    content: counter(s); position: absolute; left: 0; top: 20px;
-    width: 32px; height: 32px; border-radius: 50%;
-    display: grid; place-items: center;
-    background: var(--ink); color: var(--white); font-size: 0.9rem; font-weight: 600;
-  }
-  .steps b { display: block; color: var(--ink); }
-  .steps span { color: var(--gray-600); }
-
-  /* Galeri */
-  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .gallery .shot {
-    aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden;
-    background: var(--gray-100); border: 1px solid var(--gray-200);
-    display: grid; place-items: center; color: var(--gray-400); font-size: 0.9rem;
-  }
-  .gallery img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  /* Tombol */
-  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
-  .btn {
-    text-decoration: none; padding: 12px 26px; border-radius: 10px;
-    background: var(--ink); color: var(--white); border: 1px solid var(--ink);
-    font-size: 0.95rem; transition: background .2s, color .2s;
-  }
-  .btn:hover { background: var(--white); color: var(--ink); }
-  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--gray-400); }
-  .btn.ghost:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
-
-  /* Navigasi antar karya */
+  /* tombol direct */
   .pager {
-    margin-top: 72px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    margin-top: 120px; display: grid; grid-template-columns: 1fr 1fr; gap: 126px;
     padding-bottom: 96px;
   }
   .pager a {
@@ -143,14 +102,12 @@
     .facts { grid-template-columns: 1fr 1fr; }
     .facts div:nth-child(2) { border-right: 0; }
     .facts div:nth-child(-n+2) { border-bottom: 1px solid var(--gray-100); }
-    .gallery { grid-template-columns: 1fr 1fr; }
     .pager { grid-template-columns: 1fr; }
     .pager a:last-child { text-align: left; }
     .cover { aspect-ratio: 16 / 10; }
   }
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    * { transition: none !important; }
+    .pager a { transition: none; }
   }
 </style>
 </head>
@@ -158,75 +115,58 @@
 
 <div class="topbar">
   <div class="wrap">
-    <a class="brand" href="index.html">Nama Kamu</a>
+    <a class="brand" href="index.html">Hafy</a>
     <nav>
-      <a href="index.html">Beranda</a>
-      <a href="keahlian.html">Keahlian</a>
-      <a href="karya.html" aria-current="page">Karya</a>
+      <a href="index.html" aria-current="page">Portofolio</a>
     </nav>
   </div>
 </div>
 
 <main class="wrap">
-  <a class="back" href="karya.html">&larr; Kembali ke semua karya</a>
+  <a class="back" href="index.html">&larr; Kembali ke semua</a>
 
   <section class="head">
-    <span class="cat">Informatika</span>
+    <span class="cat">Seni Budaya</span>
     <h1>Website Projek Pribadi</h1>
-    <p class="lead">Website yang menampilkan projek pribadi di bidang coding dan simulasi Arduino, dari rangkaian sampai kode programnya.</p>
   </section>
 
-  <div class="cover"><!-- Ganti dengan: <img src="foto-utama.jpg" alt="Tampilan website projek"> -->Gambar utama proyek</div>
+  <!-- PROYEK 1 -->
+  <article class="karya">
+    <div class="cover"><img src="wong.jpg" alt="Tampilan website projek"></div>
 
-  <dl class="facts">
-    <div><dt>Kategori</dt><dd>Informatika</dd></div>
-    <div><dt>Tahun</dt><dd>2026</dd></div>
-    <div><dt>Durasi</dt><dd>2 minggu</dd></div>
-    <div><dt>Peran</dt><dd>Pembuat sendiri</dd></div>
-  </dl>
+    <dl class="facts">
+      <div><dt>Kategori</dt><dd>Seni Budaya</dd></div>
+      <div><dt>Tahun</dt><dd>2026</dd></div>
+      <div><dt>Durasi</dt><dd>4 Jam</dd></div>
+      <div><dt>Peran</dt><dd>Pembuat sendiri</dd></div>
+    </dl>
 
-  <div class="content narrow">
+    <div class="content narrow">
+      <section>
+        <h2>Tentang proyek</h2>
+        <p>  Karya gambar ini dilatarbelakangi oleh perasaan rindu yang dirasakan oleh sang pelukis terhadap seseorang yang memiliki tempat tersendiri dalam hatinya. Perasaan tersebut kemudian dituangkan ke dalam sebuah karya visual berupa potret seorang wanita yang wajahnya terinspirasi dari sosok perempuan yang ia sukai. Dalam proses pembuatannya, sang pelukis tidak hanya mengandalkan imajinasi pribadi, tetapi juga memadukan referensi gaya, tema, serta karakteristik visual dari karya seniman lain sebagai inspirasi.</p>
+      </section>
+    </div>
+  </article>
 
-    <section>
-      <h2>Tentang proyek</h2>
-      <p>Jelaskan latar belakang proyek ini: apa yang ingin Anda buat, kenapa, dan masalah apa yang ingin diselesaikan. Dua sampai tiga kalimat sudah cukup.</p>
-    </section>
+  <!-- PROYEK 2 -->
+  <article class="karya">
+    <div class="cover"><img src="bmw.jpg" alt="Tampilan website projek"></div>
 
-    <section>
-      <h2>Kemampuan yang dipakai</h2>
-      <div class="chips">
-        <span>HTML</span><span>CSS</span><span>Arduino</span><span>Coding dasar</span>
-      </div>
-    </section>
+    <dl class="facts">
+      <div><dt>Kategori</dt><dd>Seni Budaya</dd></div>
+      <div><dt>Tahun</dt><dd>2026</dd></div>
+      <div><dt>Durasi</dt><dd>4 Jam</dd></div>
+      <div><dt>Peran</dt><dd>Pembuat sendiri</dd></div>
+    </dl>
 
-    <section>
-      <h2>Proses pengerjaan</h2>
-      <ol class="steps">
-        <li><b>Merencanakan</b><span>Menentukan tujuan dan komponen yang dibutuhkan.</span></li>
-        <li><b>Merancang</b><span>Membuat sketsa tampilan dan rangkaian.</span></li>
-        <li><b>Membangun</b><span>Menulis kode dan merakit hasilnya.</span></li>
-        <li><b>Menguji</b><span>Mencoba, memperbaiki kesalahan, lalu menyempurnakan.</span></li>
-      </ol>
-    </section>
-
-    <section>
-      <h2>Galeri</h2>
-      <div class="gallery">
-        <div class="shot">Foto 1</div>
-        <div class="shot">Foto 2</div>
-        <div class="shot">Foto 3</div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Lihat hasilnya</h2>
-      <div class="actions">
-        <a class="btn" href="#">Buka proyek</a>
-        <a class="btn ghost" href="#">Lihat kode</a>
-      </div>
-    </section>
-
-  </div>
+    <div class="content narrow">
+      <section>
+        <h2>Tentang proyek</h2>
+        <p>  Karya gambar ini dilatarbelakangi oleh hobby dari pelukis yang di mana ia sangat menyukai hal-hal terkait otomotif</p>
+      </section>
+    </div>
+  </article>
 
   <nav class="pager" aria-label="Karya lainnya">
     <a href="#"><small>Sebelumnya</small><strong>Judul karya sebelumnya</strong></a>
@@ -235,7 +175,7 @@
 </main>
 
 <footer>
-  <div class="wrap">&copy; 2026 Nama Kamu</div>
+  <div class="wrap">&copy; 2026 Hafy</div>
 </footer>
 
 </body>
