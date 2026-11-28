@@ -1,110 +1,242 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kumpulan proyek Informatika saya.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kumpulan proyek Informatika saya.">
+<title>Proyek Informatika Saya</title>
+<style>
+  :root {
+    --white: #ffffff;
+    --gray-50: #f7f7f8;
+    --gray-100: #eeeeef;
+    --gray-200: #e0e0e2;
+    --gray-400: #a3a3a8;
+    --gray-600: #5f5f66;
+    --ink: #26262b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--gray-50);
+    color: var(--ink);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.7;
+  }
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
 
-  <title>Proyek Informatika Saya</title>
-  <link rel="stylesheet" href="style-projek.css">
+  /* Navigasi */
+  .topbar { background: var(--white); border-bottom: 1px solid var(--gray-200); }
+  .topbar .wrap { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+  .brand { font-weight: 700; text-decoration: none; letter-spacing: -0.01em; }
+  .topbar nav a {
+    text-decoration: none; color: var(--gray-600);
+    padding: 6px 14px; border-radius: 999px; font-size: 0.93rem;
+  }
+  .topbar nav a:hover { background: var(--gray-100); color: var(--ink); }
+
+  .back {
+    display: inline-block; margin-top: 40px; text-decoration: none;
+    color: var(--gray-600); font-size: 0.95rem;
+  }
+  .back:hover { color: var(--ink); }
+
+  /* Judul halaman */
+  .head { padding: 28px 0 24px; }
+  .cat {
+    display: inline-block; font-size: 0.8rem; padding: 3px 12px;
+    border-radius: 999px; background: var(--gray-100); color: var(--gray-600);
+  }
+  .head h1 {
+    margin-top: 16px; max-width: 14ch;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 800; letter-spacing: -0.04em; line-height: 1.05;
+  }
+  .head .lead { margin-top: 20px; max-width: 56ch; color: var(--gray-600); font-size: 1.1rem; }
+
+  /* Pengantar */
+  .intro { padding: 40px 0 32px; max-width: 720px; }
+  .intro h2 { font-size: 1.5rem; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .intro p { color: var(--gray-600); }
+
+  /* Daftar proyek */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: 20px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: var(--gray-400); }
+  .visual {
+    height: 140px; display: grid; place-items: center;
+    background: var(--gray-100); border-bottom: 1px solid var(--gray-200);
+    font-size: 2.6rem;
+  }
+  .card-body { padding: 28px; display: flex; flex-direction: column; flex: 1; }
+  .card h3 { margin-top: 14px; font-size: 1.3rem; letter-spacing: -0.02em; line-height: 1.3; }
+  .card p { margin-top: 8px; color: var(--gray-600); }
+  .tags { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .tags span {
+    font-size: 0.8rem; padding: 2px 10px; border-radius: 999px;
+    border: 1px solid var(--gray-200); color: var(--gray-600);
+  }
+  .card .link {
+    margin-top: auto; align-self: flex-start; text-decoration: none;
+    padding: 10px 22px; border-radius: 10px; font-size: 0.93rem;
+    background: var(--ink); color: var(--white); border: 1px solid var(--ink);
+    transition: background .2s, color .2s;
+  }
+  .card .tags + .link { margin-top: 24px; }
+  .card .link:hover { background: var(--white); color: var(--ink); }
+
+  /* Catatan */
+  .note {
+    margin-top: 72px; padding: 36px; max-width: 720px;
+    background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px;
+  }
+  .note h2 { font-size: 1.2rem; letter-spacing: -0.02em; }
+  .note p { margin-top: 8px; color: var(--gray-600); }
+
+  /* Navigasi antar karya */
+  .pager { margin-top: 72px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding-bottom: 96px; }
+  .pager a {
+    text-decoration: none; padding: 24px; border-radius: 16px;
+    background: var(--white); border: 1px solid var(--gray-200);
+    transition: border-color .2s;
+  }
+  .pager a:hover { border-color: var(--gray-400); }
+  .pager small { display: block; color: var(--gray-400); font-size: 0.85rem; }
+  .pager strong { font-size: 1.1rem; letter-spacing: -0.01em; }
+  .pager a:last-child { text-align: right; }
+
+  footer { padding: 28px 0 40px; color: var(--gray-400); font-size: 0.88rem; background: var(--white); border-top: 1px solid var(--gray-200); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: 1fr; }
+    .pager { grid-template-columns: 1fr; }
+    .pager a:last-child { text-align: left; }
+    .note { padding: 28px 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card, .card .link, .pager a { transition: none; }
+  }
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="navbar">
-      <a class="brand" href="index.html">Portofolio Saya</a>
-      <a class="back-link" href="index.html">← Kembali ke Portofolio</a>
-    </nav>
-    <div class="hero">
-      <span class="eyebrow">PORTOFOLIO PELAJAR</span>
-      <h1>Proyek Informatika Saya</h1>
-      <p>Berikut beberapa proyek dan latihan yang saya kerjakan selama belajar pemrograman, elektronika, dan teknologi.</p>
-    </div>
-  </header>
 
-  <main class="container">
-    <section class="intro">
-      <h2>Eksplorasi dan Karya</h2>
-      <p>Setiap proyek menjadi kesempatan untuk belajar memecahkan masalah, mencoba hal baru, dan mengembangkan keterampilan.</p>
-    </section>
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Hafy</a>
+    <nav><a href="index.html">Portofolio</a></nav>
+  </div>
+</div>
 
-    <section class="project-grid" aria-label="Daftar proyek Informatika">
-      <article class="project-card">
-        <div class="project-visual visual-blue"><span>🌐</span></div>
-        <div class="project-content">
-          <span class="category">HTML &amp; CSS</span><h3>Website Portofolio</h3>
-          <p>Membuat website pribadi yang berisi profil, kemampuan akademik, karya, dan informasi kontak.</p>
-          <div class="tags"><span>HTML</span><span>CSS</span><span>GitHub Pages</span></div>
-          <a class="project-link" href="index.html">Lihat hasil proyek ↗</a>
-        </div>
-      </article>
+<main class="wrap">
+  <a class="back" href="index.html">&larr; Kembali ke Portofolio</a>
 
-      <article class="project-card">
-        <div class="project-visual visual-green"><span>💡</span></div>
-        <div class="project-content">
-          <span class="category">Arduino</span><h3>LED dan Blink</h3>
-          <p>Mengendalikan LED agar menyala dan mati secara bergantian menggunakan program Arduino.</p>
-          <div class="tags"><span>Arduino</span><span>LED</span><span>Wokwi</span></div>
-          <a class="project-link" href="https://wokwi.com/projects/481664865857528833">Lihat hasil proyek ↗</a>
-        </div>
-      </article>
+  <section class="head">
+    <span class="cat">Informatika</span>
+    <h1>Proyek Informatika Saya</h1>
+    <p class="lead">Beberapa proyek dan latihan yang saya kerjakan selama belajar pemrograman, elektronika, dan teknologi.</p>
+  </section>
 
-      <article class="project-card">
-        <div class="project-visual visual-purple"><span>🚦</span></div>
-        <div class="project-content">
-          <span class="category">Arduino</span><h3>Lampu Lalu Lintas</h3>
-          <p>Membuat simulasi lampu lalu lintas dengan urutan nyala LED merah, kuning, dan hijau.</p>
-          <div class="tags"><span>Arduino</span><span>LED</span><span>Logika</span></div>
-          <a class="project-link" href="https://wokwi.com/projects/481664558682316801">Lihat hasil proyek ↗</a>
-        </div>
-      </article>
+  <section class="intro">
+    <h2>Eksplorasi dan Karya</h2>
+    <p>Setiap proyek menjadi kesempatan untuk belajar memecahkan masalah, mencoba hal baru, dan mengembangkan keterampilan.</p>
+  </section>
 
-      <article class="project-card">
-        <div class="project-visual visual-orange"><span>📏</span></div>
-        <div class="project-content">
-          <span class="category">Arduino &amp; Sensor</span><h3>Sensor Ultrasonik</h3>
-          <p>Mengukur jarak objek menggunakan sensor ultrasonik dan menampilkan output sensor dalam bentuk suara dan cahaya lampu.</p>
-          <div class="tags"><span>Arduino</span><span>HC-SR04</span><span>Wokwi</span></div>
-          <a class="project-link" href="https://wokwi.com/projects/481666622289014785">Lihat hasil proyek ↗</a>
-        </div>
-      </article>
+  <section class="grid" aria-label="Daftar proyek Informatika">
 
-      <article class="project-card">
-        <div class="project-visual visual-pink"><span>🚗</span></div>
-        <div class="project-content">
-          <span class="category">Arduino</span><h3>Sistem Parkir Otomatis</h3>
-          <p>Simulasi parkir sederhana dengan sensor untuk mendeteksi kendaraan dan mengendalikan palang servo.</p>
-          <div class="tags"><span>Arduino</span><span>Sensor</span><span>Servo</span></div>
-          <a class="project-link" href="https://wokwi.com/projects/481667066561412097">Lihat hasil proyek ↗</a>
-        </div>
-      </article>
+    <article class="card">
+      <div class="visual" aria-hidden="true">🌐</div>
+      <div class="card-body">
+        <span class="cat" style="align-self:flex-start">HTML &amp; CSS</span>
+        <h3>Website Portofolio</h3>
+        <p>Membuat website pribadi yang berisi profil, kemampuan akademik, karya, dan informasi kontak.</p>
+        <div class="tags"><span>HTML</span><span>CSS</span><span>GitHub Pages</span></div>
+        <a class="link" href="index.html">Lihat hasil proyek ↗</a>
+      </div>
+    </article>
 
-      <article class="project-card">
-        <div class="project-visual visual-teal"><span>🌡️</span></div>
-        <div class="project-content">
-          <span class="category">Arduino &amp; Sensor</span><h3>Monitoring Suhu dan Kelembapan</h3>
-          <p>Membaca data suhu dan kelembapan menggunakan sensor, kemudian menampilkan hasilnya.</p>
-          <div class="tags"><span>Arduino</span><span>DHT</span><span>LCD</span></div>
-          <a class="project-link" href="https://wokwi.com/projects/481667434645292033">Lihat hasil proyek ↗</a>
-        </div>
-      </article>
-    </section>
+    <article class="card">
+      <div class="visual" aria-hidden="true">💡</div>
+      <div class="card-body">
+        <span class="cat" style="align-self:flex-start">Arduino</span>
+        <h3>LED dan Blink</h3>
+        <p>Mengendalikan LED agar menyala dan mati secara bergantian menggunakan program Arduino.</p>
+        <div class="tags"><span>Arduino</span><span>LED</span><span>Wokwi</span></div>
+        <a class="link" href="https://wokwi.com/projects/481664865857528833">Lihat hasil proyek ↗</a>
+      </div>
+    </article>
 
-    <section class="note">
-      <h2>Hafy Budi Pernah Berkata</h2>
-      <p> Yo ndak mampu akuuu, dudu spek idaman mu</p>
-    </section>
-    <nav class="pager" aria-label="Karya lainnya">
+    <article class="card">
+      <div class="visual" aria-hidden="true">🚦</div>
+      <div class="card-body">
+        <span class="cat" style="align-self:flex-start">Arduino</span>
+        <h3>Lampu Lalu Lintas</h3>
+        <p>Membuat simulasi lampu lalu lintas dengan urutan nyala LED merah, kuning, dan hijau.</p>
+        <div class="tags"><span>Arduino</span><span>LED</span><span>Logika</span></div>
+        <a class="link" href="https://wokwi.com/projects/481664558682316801">Lihat hasil proyek ↗</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="visual" aria-hidden="true">📏</div>
+      <div class="card-body">
+        <span class="cat" style="align-self:flex-start">Arduino &amp; Sensor</span>
+        <h3>Sensor Ultrasonik</h3>
+        <p>Mengukur jarak objek menggunakan sensor ultrasonik dan menampilkan output sensor dalam bentuk suara dan cahaya lampu.</p>
+        <div class="tags"><span>Arduino</span><span>HC-SR04</span><span>Wokwi</span></div>
+        <a class="link" href="https://wokwi.com/projects/481666622289014785">Lihat hasil proyek ↗</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="visual" aria-hidden="true">🚗</div>
+      <div class="card-body">
+        <span class="cat" style="align-self:flex-start">Arduino</span>
+        <h3>Sistem Parkir Otomatis</h3>
+        <p>Simulasi parkir sederhana dengan sensor untuk mendeteksi kendaraan dan mengendalikan palang servo.</p>
+        <div class="tags"><span>Arduino</span><span>Sensor</span><span>Servo</span></div>
+        <a class="link" href="https://wokwi.com/projects/481667066561412097">Lihat hasil proyek ↗</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="visual" aria-hidden="true">🌡️</div>
+      <div class="card-body">
+        <span class="cat" style="align-self:flex-start">Arduino &amp; Sensor</span>
+        <h3>Monitoring Suhu dan Kelembapan</h3>
+        <p>Membaca data suhu dan kelembapan menggunakan sensor, kemudian menampilkan hasilnya.</p>
+        <div class="tags"><span>Arduino</span><span>DHT</span><span>LCD</span></div>
+        <a class="link" href="https://wokwi.com/projects/481667434645292033">Lihat hasil proyek ↗</a>
+      </div>
+    </article>
+
+  </section>
+
+  <section class="note">
+    <h2>Hafy Budi Pernah Berkata</h2>
+    <p>Yo ndak mampu akuuu, dudu spek idaman mu</p>
+  </section>
+
+  <nav class="pager" aria-label="Karya lainnya">
     <a href="#"><small>Sebelumnya</small><strong>Judul karya sebelumnya</strong></a>
     <a href="#"><small>Berikutnya</small><strong>Judul karya berikutnya</strong></a>
   </nav>
-  </main>
+</main>
 
+<footer>
+  <div class="wrap">
+    <span>&copy; 2026 Hafy &middot; Dibuat dengan HTML dan CSS</span>
+    <a href="index.html">Kembali ke halaman utama &uarr;</a>
+  </div>
+</footer>
 
-
-  
-  <footer class="footer">
-    <p>© 2026 Hafy · Dibuat dengan HTML dan CSS</p>
-    <a href="index.html">Kembali ke halaman utama ↑</a>
-  </footer>
 </body>
 </html>
